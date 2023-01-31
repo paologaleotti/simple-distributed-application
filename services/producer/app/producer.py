@@ -1,4 +1,5 @@
 import random
+import time
 
 import pika
 from consts import RABBIT_HOST_NAME, RABBIT_QUEUE_NAME
@@ -27,6 +28,7 @@ def core():
             channel.basic_publish(
                 exchange="", routing_key=RABBIT_QUEUE_NAME, body=message)
             print(f"message sent -> {message}")
+            time.sleep(1)
     except:
         connection.close()
         raise

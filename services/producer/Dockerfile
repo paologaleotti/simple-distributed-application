@@ -1,9 +1,9 @@
 FROM python:3.11
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
 RUN pip install pika
 
-COPY ./app .
+COPY . .
 
-CMD [ "python3 producer.py" ]
+CMD [ "python", "-u", "./app/producer.py" ]

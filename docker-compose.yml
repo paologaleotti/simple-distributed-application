@@ -4,20 +4,27 @@ services:
     image: rabbitmq:latest
     networks:
       - my-network
+    container_name: rabbitmq
 
   producer:
     environment:
       - RABBIT_HOST_NAME=rabbitmq
       - RABBIT_QUEUE_NAME=worker_queue
-    build: ./producer
+    build: ./services/producer
+    restart: on-failure
+    depends_on:
+      - rabbitmq
     networks:
       - my-network
 
-  consumer:
+  worker:
     environment:
       - RABBIT_HOST_NAME=rabbitmq
       - RABBIT_QUEUE_NAME=worker_queue
-    build: ./worker
+    build: ./services/worker
+    restart: on-failure
+    depends_on:
+      - rabbitmq
     networks:
       - my-network
 

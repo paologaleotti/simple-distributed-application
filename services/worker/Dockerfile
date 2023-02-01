@@ -1,9 +1,11 @@
 FROM python:3.11
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
 RUN pip install pika
 
-COPY ./app .
+COPY . .
 
-CMD [ "python3 consumer.py" ]
+RUN "ls"
+
+CMD [ "python", "-u", "./app/worker.py" ]

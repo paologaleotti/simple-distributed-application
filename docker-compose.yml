@@ -1,0 +1,33 @@
+version: '3.9'
+services:
+  rabbitmq:
+    image: rabbitmq:latest
+    networks:
+      - my-network
+    container_name: rabbitmq
+
+  producer:
+    environment:
+      - RABBIT_HOST_NAME=rabbitmq
+      - RABBIT_QUEUE_NAME=worker_queue
+    build: ./services/producer
+    restart: on-failure
+    depends_on:
+      - rabbitmq
+    networks:
+      - my-network
+
+  worker:
+    environment:
+      - RABBIT_HOST_NAME=rabbitmq
+      - RABBIT_QUEUE_NAME=worker_queue
+    build: ./services/worker
+    restart: on-failure
+    depends_on:
+      - rabbitmq
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge

@@ -2,6 +2,11 @@
 
 # simple-distributed-application
 
-This repo contains a simple but infinitely scalable web application using Python and RabbitMQ.
+This repo contains an example of a simple but infinitely scalable web service using **Python** and **RabbitMQ**.
 
 ![schema](/docs/infra_schema.png)
+
+## Features
+- **Infinite scalabilty**: add as many workers as you want and RabbitMQ will spread all the messages across every deployed service
+- **Docker/Kubernetes deployment**: each service can be containerized, distributed and deployed anywhere
+- **Language independent**: RabbitMQ has client libraries for pretty much any language or framework

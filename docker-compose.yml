@@ -17,7 +17,7 @@ services:
     environment:
       - RABBIT_HOST_NAME=rabbitmq
       - RABBIT_QUEUE_NAME=worker_queue
-    build: ./consumer
+    build: ./worker
     networks:
       - my-network
 

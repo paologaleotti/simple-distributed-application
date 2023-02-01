@@ -1,6 +1,3 @@
-import random
-import time
-
 import pika
 from consts import RABBIT_HOST_NAME, RABBIT_QUEUE_NAME
 
@@ -9,7 +6,7 @@ if not RABBIT_HOST_NAME:
 
 
 def init_connection(host: str, queue: str):
-    connection_params = pika.ConnectionParameters(host=host)
+    connection_params1 = pika.ConnectionParameters(host=host)
     connection = pika.BlockingConnection(parameters=connection_params)
     channel = connection.channel()
     channel.queue_declare(queue=queue)
